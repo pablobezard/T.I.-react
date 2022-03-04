@@ -1,9 +1,9 @@
 import React from "react";
-import { Container, Button, Grid, Typography } from "@material-ui/core";
+import { Container, Typography, Button, Grid } from "@material-ui/core";
+
 import useStyles from "./styles";
 
 const Cart = ({ cart }) => {
-  const isEmpty = !cart.line_items.length;
   const classes = useStyles();
 
   const EmptyCart = () => {
@@ -39,7 +39,7 @@ const Cart = ({ cart }) => {
           sizes="large"
           type="button"
           variant="contained"
-          color="secundary"
+          color="primary"
         >
           Checkout
         </Button>
@@ -47,11 +47,15 @@ const Cart = ({ cart }) => {
     </>;
   };
 
+  if (!cart.line_items) return "Loading.. ";
+
   return (
     <Container>
       <div className={classes.toolbar} />;
-      <Typography variant="h3">your shoping cart</Typography>
-      {isEmpty ? <EmptyCart /> : <FilledCart />}
+      <Typography className={classes.title} variant="h3">
+        your shoping cart
+      </Typography>
+      {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
     </Container>
   );
 };
