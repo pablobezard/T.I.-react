@@ -60,7 +60,7 @@ const App = () => {
           }
         />
         <Route
-          path="/card"
+          path="/cart"
           element={
             <Cart
               cart={cart}
